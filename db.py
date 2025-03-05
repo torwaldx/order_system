@@ -3,6 +3,9 @@ import sqlite3
 conn = sqlite3.connect("pizza.db")
 cursor = conn.cursor()
 
+def _get_db_connection():
+    return sqlite3.connect("pizza.db", check_same_thread=False)
+
 
 def _init_db():
     """Инициализирует БД"""
@@ -23,6 +26,8 @@ def _check_db_exists():
 
 
 def get_all_products_from_db():
+    conn = _get_db_connection()
+    cursor = conn.cursor()
     sql = """
 SELECT 
     product_name, 
@@ -32,7 +37,9 @@ FROM products
 JOIN product_types ON type_id = product_types.id;
 """
     cursor.execute(sql)
-    return cursor.fetchall()
+    data = cursor.fetchall()
+    conn.close()
+    return data
 
 
 def get_products_str() -> str:
