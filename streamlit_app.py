@@ -19,8 +19,9 @@ st.title("💬 Чат бот для размещения заказов в пи�
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
 # via `st.secrets`, see https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
+if not os.environ.get('OPENAI_API_KEY'):
+    os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 
-os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 llm = ChatOpenAI(
     openai_api_base='https://api.proxyapi.ru/openai/v1',
     model_name="gpt-4o-mini",
