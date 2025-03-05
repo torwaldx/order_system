@@ -1,6 +1,6 @@
 # 💬 Chatbot template
 
-A simple Streamlit app that shows how to build a chatbot using OpenAI's GPT-3.5.
+Демонстрационная версия Чат-бота для размещения заказов в пиццерии. На версии gpt 4o-mini
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://order-chat-709fyket7zhat.streamlit.app/)
 
