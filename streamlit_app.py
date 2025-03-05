@@ -12,10 +12,8 @@ import db
 import few_shot
 
 # Show title and description.
-st.title("💬 Chat Bot for placing an order in a pizzeria")
-st.write(
-    "Just type whatever you want"
-)
+st.title("💬 Чат бот для размещения заказов в пиццерии")
+
 
 # Ask user for their OpenAI API key via `st.text_input`.
 # Alternatively, you can store the API key in `./.streamlit/secrets.toml` and access it
@@ -109,7 +107,7 @@ for message in st.session_state.messages:
 
 # Create a chat input field to allow the user to enter a message. This will display
 # automatically at the bottom of the page.
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("Просто напечатайте, что вы хотите"):
 
     # Store and display the current prompt.
     st.session_state.messages.append({"role": "user", "content": prompt})
@@ -120,8 +118,13 @@ if prompt := st.chat_input("What is up?"):
     chain = get_order_process_chain()
     answer = chain.invoke({"user_request": prompt})
 
+    order = db.get_products_with_prices(json.loads(answer.content))
+    order_text = "\n\n".join([f"{item['name']} - {item['quantity']} x {int(item['price'])}" for item in order['items']])
+
+
     # Stream the response to the chat using `st.write_stream`, then store it in 
     # session state.
     with st.chat_message("assistant"):
-        response = st.write(answer.content)
-    st.session_state.messages.append({"role": "assistant", "content": response})
+        st.markdown(order_text)
+
+    st.session_state.messages.append({"role": "assistant", "content": order_text})
