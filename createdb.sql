@@ -1,8 +1,16 @@
+BEGIN TRANSACTION;
 CREATE TABLE product_types (
     id INTEGER PRIMARY KEY,
     type_name TEXT NOT NULL
 );
-
+INSERT INTO "product_types" VALUES(1,'Пицца');
+INSERT INTO "product_types" VALUES(2,'Закуска');
+INSERT INTO "product_types" VALUES(3,'Напиток');
+INSERT INTO "product_types" VALUES(4,'Десерт');
+INSERT INTO "product_types" VALUES(5,'Добавка');
+INSERT INTO "product_types" VALUES(6,'Сувенир');
+INSERT INTO "product_types" VALUES(7,'Прочее');
+INSERT INTO "product_types" VALUES(8,'Подарочная карта');
 CREATE TABLE products (
     id INTEGER PRIMARY KEY,
     product_name TEXT NOT NULL,
@@ -10,132 +18,481 @@ CREATE TABLE products (
     price REAL NOT NULL,
     FOREIGN KEY (type_id) REFERENCES product_types (id)
 );
-
-INSERT INTO product_types (id, type_name) VALUES
-(1, 'Пицца'),
-(2, 'Закуска'),
-(3, 'Напиток'),
-(4, 'Десерт'),
-(5, 'Добавка'),
-(6, 'Сувенир'),
-(7, 'Прочее'),
-(8, 'Подарочная карта');
-
-INSERT INTO products (id, product_name, type_id, price) VALUES
-(12, 'Додстер', 2, 150.00),
-(13, 'Картофель из печи', 2, 180.00),
-(14, 'Добрый Кола Small', 3, 80.00),
-(16, 'Маффин Три шоколада', 4, 120.00),
-(17, 'Коктейль Шоколадный (фризер) 0.3', 3, 130.00),
-(20, 'Добрый Лайм-Лимон 0.5', 3, 90.00),
-(21, 'Морс Вишня 0.45', 3, 70.00),
-(22, 'Морс Черная смородина 0.45', 3, 70.00),
-(24, 'Сырный соус Додо', 5, 30.00),
-(25, 'Чесночный соус', 5, 30.00),
-(27, 'Молоко для 0.4', 3, 50.00),
-(28, 'Гель-антисептик для рук', 7, 200.00),
-(31, 'Карамельное яблоко молочный коктейль', 3, 140.00),
-(32, 'Банановый коктейль 0.3', 3, 110.00),
-(33, 'Макарон манго-маракуйя', 4, 100.00),
-(34, 'Тирамису NEW', 4, 160.00),
-(35, 'Шоколадный кукис NEW', 4, 90.00),
-(36, 'Фондан', 4, 130.00),
-(37, 'Чизкейк Банановый с шоколадным печеньем', 4, 170.00),
-(38, 'Сырники с малиновым вареньем', 4, 120.00),
-(39, 'Мороженое в стаканчике с манго и маракуйей', 4, 150.00),
-(40, 'Мороженое в стаканчике с клубникой', 4, 140.00),
-(41, 'Мороженое в стаканчике без топпинга', 4, 100.00),
-(42, 'Мороженое в стаканчике с шоколадом', 4, 130.00),
-(43, 'Мороженое в стаканчике с банановым топпингом', 4, 140.00),
-(44, 'Кокосовый молочный коктейль', 3, 120.00),
-(45, 'Коктейль Классический 0.3', 3, 100.00),
-(46, 'Коктейль Клубничный 0.3', 3, 110.00),
-(47, 'Коктейль с Орео 0.3', 3, 120.00),
-(48, 'Айс Капучино (NEW) 0.3', 3, 130.00),
-(49, 'Кофе Капучино 0.4', 3, 150.00),
-(50, 'Кофе Латте 0.4', 3, 150.00),
-(51, 'Кофе Американо 0.3', 3, 120.00),
-(52, 'Кофе Кокосовый латте 0.4', 3, 160.00),
-(53, 'Кофе Карамельный Капучино 0.3', 3, 140.00),
-(54, 'Кофе Ореховый латте 0.4', 3, 170.00),
-(55, 'Вода БонаАква негазированная 0.5', 3, 50.00),
-(56, 'Rich Tea Зеленый 0.5', 3, 80.00),
-(57, 'Rich Tea Черный с лимоном 0.5', 3, 80.00),
-(58, 'Rich Tea Зеленый с манго 0.5', 3, 90.00),
-(59, 'Сок Rich Апельсин 0.3', 3, 70.00),
-(60, 'Сок Rich Яблоко 0.3', 3, 70.00),
-(61, 'Сок Rich Вишня 0.3', 3, 80.00),
-(62, 'Детский сок “Добрый” Яблоко 0.2', 3, 60.00),
-(63, 'Детский сок “Добрый” Мультифрукт 0.2', 3, 60.00),
-(64, 'Какао 0.3', 3, 100.00),
-(65, 'Цитрусовый чай с имбирем Big', 3, 120.00),
-(66, 'Зеленый чай NEW сенча Big', 3, 110.00),
-(67, 'Черный чай с чабрецом Big', 3, 100.00),
-(68, 'Таежный чай 0.4', 3, 80.00),
-(69, 'Магнит на холодильник «Хочу пиццу»', 6, 250.00),
-(70, 'Электронная подарочная Додо–карта Big', 8, 1000.00),
-(71, 'Подарочный сертификат 1000 ₽ (локальный маркетинг)', 8, 1000.00),
-(72, 'Додо Книга', 6, 500.00),
-(73, 'Додо Раскраска', 6, 300.00),
-(74, 'Набор для выращивания «Смешарики»', 6, 400.00),
-(75, 'Фартук «Pizza is my Credodo»', 6, 600.00),
-(76, 'Фартук «We make pizza to open the world»', 6, 600.00),
-(77, 'Додо Колпак', 6, 200.00),
-(78, 'Многоразовая маска', 7, 150.00),
-(79, 'Гель-антисептик для рук Antiseptane', 7, 200.00),
-(80, 'Листовка с акцией', 7, 10.00),
-(81, 'Открытка «День рождения»', 7, 50.00),
-(82, 'Маргарита Small', 1, 315.00),
-(83, 'Маргарита Medium', 1, 405.00),
-(84, 'Маргарита Large', 1, 495.00),
-(85, 'Овощи и грибы Small', 1, 294.00),
-(86, 'Овощи и грибы Medium', 1, 378.00),
-(87, 'Овощи и грибы Large', 1, 462.00),
-(88, 'Пепперони Small', 1, 336.00),
-(89, 'Пепперони Medium', 1, 432.00),
-(90, 'Пепперони Large', 1, 528.00),
-(91, 'Четыре сезона Small', 1, 350.00),
-(92, 'Четыре сезона Medium', 1, 450.00),
-(93, 'Четыре сезона Large', 1, 550.00),
-(94, 'Аррива! Small', 1, 329.00),
-(95, 'Аррива! Medium', 1, 423.00),
-(96, 'Аррива! Large', 1, 517.00),
-(97, 'Бургер-пицца Small', 1, 364.00),
-(98, 'Бургер-пицца Medium', 1, 468.00),
-(99, 'Бургер-пицца Large', 1, 572.00),
-(100, 'Ветчина и грибы Small', 1, 322.00),
-(101, 'Ветчина и грибы Medium', 1, 414.00),
-(102, 'Ветчина и грибы Large', 1, 506.00),
-(103, 'Ветчина и сыр Small', 1, 308.00),
-(104, 'Ветчина и сыр Medium', 1, 396.00),
-(105, 'Ветчина и сыр Large', 1, 484.00),
-(106, 'Гавайская с альфредо Small', 1, 343.00),
-(107, 'Гавайская с альфредо Medium', 1, 441.00),
-(108, 'Гавайская с альфредо Large', 1, 539.00),
-(109, 'Двойной цыпленок Small', 1, 357.00),
-(110, 'Двойной цыпленок Medium', 1, 459.00),
-(111, 'Двойной цыпленок Large', 1, 561.00),
-(112, 'Сырная Small', 1, 245.00),
-(113, 'Сырная Medium', 1, 315.00),
-(114, 'Сырная Large', 1, 385.00),
-(115, 'Диабло Small', 1, 301.00),
-(116, 'Диабло Medium', 1, 387.00),
-(117, 'Диабло Large', 1, 473.00),
-(118, 'Чоризо фреш Small', 1, 329.00),
-(119, 'Чоризо фреш Medium', 1, 423.00),
-(120, 'Чоризо фреш Large', 1, 517.00),
-(121, 'Пепперони Фреш Small', 1, 336.00),
-(122, 'Пепперони Фреш Medium', 1, 432.00),
-(123, 'Пепперони Фреш Large', 1, 528.00),
-(124, 'Карбонара Small', 1, 455.00),
-(125, 'Карбонара Medium', 1, 585.00),
-(126, 'Карбонара Large', 1, 715.00),
-(127, 'Кус Мясо и овощи Римская Small', 1, 385.00),
-(128, 'Кус Мясо и овощи Римская Medium', 1, 495.00),
-(129, 'Кус Мясо и овощи Римская Large', 1, 605.00),
-(130, 'Додо Микс Small', 1, 490.00),
-(131, 'Додо Микс Medium', 1, 630.00),
-(132, 'Додо Микс Large', 1, 770.00),
-(133, 'Миксик Small', 1, 266.00),
-(134, 'Миксик Medium', 1, 342.00),
-(135, 'Миксик Large', 1, 418.00);
+INSERT INTO "products" VALUES(12,'Додстер',2,150.0);
+INSERT INTO "products" VALUES(13,'Картофель из печи',2,180.0);
+INSERT INTO "products" VALUES(14,'Добрый Кола Small',3,80.0);
+INSERT INTO "products" VALUES(16,'Маффин Три шоколада',4,120.0);
+INSERT INTO "products" VALUES(17,'Коктейль Шоколадный (фризер) 0.3',3,130.0);
+INSERT INTO "products" VALUES(20,'Добрый Лайм-Лимон 0.5',3,90.0);
+INSERT INTO "products" VALUES(21,'Морс Вишня 0.45',3,70.0);
+INSERT INTO "products" VALUES(22,'Морс Черная смородина 0.45',3,70.0);
+INSERT INTO "products" VALUES(24,'Сырный соус Додо',5,30.0);
+INSERT INTO "products" VALUES(25,'Чесночный соус',5,30.0);
+INSERT INTO "products" VALUES(27,'Молоко для 0.4',3,50.0);
+INSERT INTO "products" VALUES(28,'Гель-антисептик для рук',7,200.0);
+INSERT INTO "products" VALUES(31,'Карамельное яблоко молочный коктейль',3,140.0);
+INSERT INTO "products" VALUES(32,'Банановый коктейль 0.3',3,110.0);
+INSERT INTO "products" VALUES(33,'Макарон манго-маракуйя',4,100.0);
+INSERT INTO "products" VALUES(34,'Тирамису NEW',4,160.0);
+INSERT INTO "products" VALUES(35,'Шоколадный кукис NEW',4,90.0);
+INSERT INTO "products" VALUES(36,'Фондан',4,130.0);
+INSERT INTO "products" VALUES(37,'Чизкейк Банановый с шоколадным печеньем',4,170.0);
+INSERT INTO "products" VALUES(38,'Сырники с малиновым вареньем',4,120.0);
+INSERT INTO "products" VALUES(39,'Мороженое в стаканчике с манго и маракуйей',4,150.0);
+INSERT INTO "products" VALUES(40,'Мороженое в стаканчике с клубникой',4,140.0);
+INSERT INTO "products" VALUES(41,'Мороженое в стаканчике без топпинга',4,100.0);
+INSERT INTO "products" VALUES(42,'Мороженое в стаканчике с шоколадом',4,130.0);
+INSERT INTO "products" VALUES(43,'Мороженое в стаканчике с банановым топпингом',4,140.0);
+INSERT INTO "products" VALUES(44,'Кокосовый молочный коктейль',3,120.0);
+INSERT INTO "products" VALUES(45,'Коктейль Классический 0.3',3,100.0);
+INSERT INTO "products" VALUES(46,'Коктейль Клубничный 0.3',3,110.0);
+INSERT INTO "products" VALUES(47,'Коктейль с Орео 0.3',3,120.0);
+INSERT INTO "products" VALUES(48,'Айс Капучино (NEW) 0.3',3,130.0);
+INSERT INTO "products" VALUES(49,'Кофе Капучино 0.4',3,150.0);
+INSERT INTO "products" VALUES(50,'Кофе Латте 0.4',3,150.0);
+INSERT INTO "products" VALUES(51,'Кофе Американо 0.3',3,120.0);
+INSERT INTO "products" VALUES(52,'Кофе Кокосовый латте 0.4',3,160.0);
+INSERT INTO "products" VALUES(53,'Кофе Карамельный Капучино 0.3',3,140.0);
+INSERT INTO "products" VALUES(54,'Кофе Ореховый латте 0.4',3,170.0);
+INSERT INTO "products" VALUES(55,'Вода БонаАква негазированная 0.5',3,50.0);
+INSERT INTO "products" VALUES(56,'Rich Tea Зеленый 0.5',3,80.0);
+INSERT INTO "products" VALUES(57,'Rich Tea Черный с лимоном 0.5',3,80.0);
+INSERT INTO "products" VALUES(58,'Rich Tea Зеленый с манго 0.5',3,90.0);
+INSERT INTO "products" VALUES(59,'Сок Rich Апельсин 0.3',3,70.0);
+INSERT INTO "products" VALUES(60,'Сок Rich Яблоко 0.3',3,70.0);
+INSERT INTO "products" VALUES(61,'Сок Rich Вишня 0.3',3,80.0);
+INSERT INTO "products" VALUES(62,'Детский сок “Добрый” Яблоко 0.2',3,60.0);
+INSERT INTO "products" VALUES(63,'Детский сок “Добрый” Мультифрукт 0.2',3,60.0);
+INSERT INTO "products" VALUES(64,'Какао 0.3',3,100.0);
+INSERT INTO "products" VALUES(65,'Цитрусовый чай с имбирем Big',3,120.0);
+INSERT INTO "products" VALUES(66,'Зеленый чай NEW сенча Big',3,110.0);
+INSERT INTO "products" VALUES(67,'Черный чай с чабрецом Big',3,100.0);
+INSERT INTO "products" VALUES(68,'Таежный чай 0.4',3,80.0);
+INSERT INTO "products" VALUES(69,'Магнит на холодильник «Хочу пиццу»',6,250.0);
+INSERT INTO "products" VALUES(70,'Электронная подарочная Додо–карта Big',8,1000.0);
+INSERT INTO "products" VALUES(71,'Подарочный сертификат 1000 ₽ (локальный маркетинг)',8,1000.0);
+INSERT INTO "products" VALUES(72,'Додо Книга',6,500.0);
+INSERT INTO "products" VALUES(73,'Додо Раскраска',6,300.0);
+INSERT INTO "products" VALUES(74,'Набор для выращивания «Смешарики»',6,400.0);
+INSERT INTO "products" VALUES(75,'Фартук «Pizza is my Credodo»',6,600.0);
+INSERT INTO "products" VALUES(76,'Фартук «We make pizza to open the world»',6,600.0);
+INSERT INTO "products" VALUES(77,'Додо Колпак',6,200.0);
+INSERT INTO "products" VALUES(78,'Многоразовая маска',7,150.0);
+INSERT INTO "products" VALUES(79,'Гель-антисептик для рук Antiseptane',7,200.0);
+INSERT INTO "products" VALUES(80,'Листовка с акцией',7,10.0);
+INSERT INTO "products" VALUES(81,'Открытка «День рождения»',7,50.0);
+INSERT INTO "products" VALUES(82,'Маргарита Small',1,315.0);
+INSERT INTO "products" VALUES(83,'Маргарита Medium',1,405.0);
+INSERT INTO "products" VALUES(84,'Маргарита Large',1,495.0);
+INSERT INTO "products" VALUES(85,'Овощи и грибы Small',1,294.0);
+INSERT INTO "products" VALUES(86,'Овощи и грибы Medium',1,378.0);
+INSERT INTO "products" VALUES(87,'Овощи и грибы Large',1,462.0);
+INSERT INTO "products" VALUES(88,'Пепперони Small',1,336.0);
+INSERT INTO "products" VALUES(89,'Пепперони Medium',1,432.0);
+INSERT INTO "products" VALUES(90,'Пепперони Large',1,528.0);
+INSERT INTO "products" VALUES(91,'Четыре сезона Small',1,350.0);
+INSERT INTO "products" VALUES(92,'Четыре сезона Medium',1,450.0);
+INSERT INTO "products" VALUES(93,'Четыре сезона Large',1,550.0);
+INSERT INTO "products" VALUES(94,'Аррива! Small',1,329.0);
+INSERT INTO "products" VALUES(95,'Аррива! Medium',1,423.0);
+INSERT INTO "products" VALUES(96,'Аррива! Large',1,517.0);
+INSERT INTO "products" VALUES(97,'Бургер-пицца Small',1,364.0);
+INSERT INTO "products" VALUES(98,'Бургер-пицца Medium',1,468.0);
+INSERT INTO "products" VALUES(99,'Бургер-пицца Large',1,572.0);
+INSERT INTO "products" VALUES(100,'Ветчина и грибы Small',1,322.0);
+INSERT INTO "products" VALUES(101,'Ветчина и грибы Medium',1,414.0);
+INSERT INTO "products" VALUES(102,'Ветчина и грибы Large',1,506.0);
+INSERT INTO "products" VALUES(103,'Ветчина и сыр Small',1,308.0);
+INSERT INTO "products" VALUES(104,'Ветчина и сыр Medium',1,396.0);
+INSERT INTO "products" VALUES(105,'Ветчина и сыр Large',1,484.0);
+INSERT INTO "products" VALUES(106,'Гавайская с альфредо Small',1,343.0);
+INSERT INTO "products" VALUES(107,'Гавайская с альфредо Medium',1,441.0);
+INSERT INTO "products" VALUES(108,'Гавайская с альфредо Large',1,539.0);
+INSERT INTO "products" VALUES(109,'Двойной цыпленок Small',1,357.0);
+INSERT INTO "products" VALUES(110,'Двойной цыпленок Medium',1,459.0);
+INSERT INTO "products" VALUES(111,'Двойной цыпленок Large',1,561.0);
+INSERT INTO "products" VALUES(112,'Сырная Small',1,245.0);
+INSERT INTO "products" VALUES(113,'Сырная Medium',1,315.0);
+INSERT INTO "products" VALUES(114,'Сырная Large',1,385.0);
+INSERT INTO "products" VALUES(115,'Диабло Small',1,301.0);
+INSERT INTO "products" VALUES(116,'Диабло Medium',1,387.0);
+INSERT INTO "products" VALUES(117,'Диабло Large',1,473.0);
+INSERT INTO "products" VALUES(118,'Чоризо фреш Small',1,329.0);
+INSERT INTO "products" VALUES(119,'Чоризо фреш Medium',1,423.0);
+INSERT INTO "products" VALUES(120,'Чоризо фреш Large',1,517.0);
+INSERT INTO "products" VALUES(121,'Пепперони Фреш Small',1,336.0);
+INSERT INTO "products" VALUES(122,'Пепперони Фреш Medium',1,432.0);
+INSERT INTO "products" VALUES(123,'Пепперони Фреш Large',1,528.0);
+INSERT INTO "products" VALUES(124,'Карбонара Small',1,455.0);
+INSERT INTO "products" VALUES(125,'Карбонара Medium',1,585.0);
+INSERT INTO "products" VALUES(126,'Карбонара Large',1,715.0);
+INSERT INTO "products" VALUES(127,'Кус Мясо и овощи Римская Small',1,385.0);
+INSERT INTO "products" VALUES(128,'Кус Мясо и овощи Римская Medium',1,495.0);
+INSERT INTO "products" VALUES(129,'Кус Мясо и овощи Римская Large',1,605.0);
+INSERT INTO "products" VALUES(130,'Додо Микс Small',1,490.0);
+INSERT INTO "products" VALUES(131,'Додо Микс Medium',1,630.0);
+INSERT INTO "products" VALUES(132,'Додо Микс Large',1,770.0);
+INSERT INTO "products" VALUES(133,'Миксик Small',1,266.0);
+INSERT INTO "products" VALUES(134,'Миксик Medium',1,342.0);
+INSERT INTO "products" VALUES(135,'Миксик Large',1,418.0);
+INSERT INTO "products" VALUES(136,'Айс Капучино (NEW) (фризер) 0.3',3,120.0);
+INSERT INTO "products" VALUES(137,'Апельсиновый фреш 0.3',3,90.0);
+INSERT INTO "products" VALUES(138,'Банановый коктейль (фризер) 0.3',3,110.0);
+INSERT INTO "products" VALUES(139,'Вода БонаАква негазированная 0.5',3,50.0);
+INSERT INTO "products" VALUES(140,'Добрый Апельсин 0.5',3,70.0);
+INSERT INTO "products" VALUES(141,'Добрый Кола Big',3,100.0);
+INSERT INTO "products" VALUES(142,'Добрый Кола без сахара Big',3,100.0);
+INSERT INTO "products" VALUES(143,'Добрый Кола без сахара Small',3,80.0);
+INSERT INTO "products" VALUES(144,'Добрый Манго-Маракуйя 0.5',3,90.0);
+INSERT INTO "products" VALUES(145,'Карамельное яблоко молочный коктейль (фризер) 0.3',3,130.0);
+INSERT INTO "products" VALUES(146,'Карамельное яблоко молочный коктейль 0.3',3,130.0);
+INSERT INTO "products" VALUES(147,'Кокосовый молочный коктейль (фризер) 0.3',3,120.0);
+INSERT INTO "products" VALUES(148,'Кокосовый молочный коктейль 0.3',3,120.0);
+INSERT INTO "products" VALUES(149,'Коктейль Классический (фризер) 0.3',3,110.0);
+INSERT INTO "products" VALUES(150,'Коктейль Клубничный (фризер) 0.3',3,110.0);
+INSERT INTO "products" VALUES(151,'Коктейль Шоколадный 0.3',3,100.0);
+INSERT INTO "products" VALUES(152,'Коктейль с Орео (фризер) 0.3',3,140.0);
+INSERT INTO "products" VALUES(153,'Кофе Американо',3,80.0);
+INSERT INTO "products" VALUES(154,'Кофе Американо 0.2',3,70.0);
+INSERT INTO "products" VALUES(155,'Кофе Американо 0.4',3,90.0);
+INSERT INTO "products" VALUES(156,'Кофе Глясе 0.3',3,100.0);
+INSERT INTO "products" VALUES(157,'Кофе Двойной Эспрессо 0.06',3,60.0);
+INSERT INTO "products" VALUES(158,'Кофе Капучино 0.2',3,80.0);
+INSERT INTO "products" VALUES(159,'Кофе Капучино 0.3',3,100.0);
+INSERT INTO "products" VALUES(160,'Кофе Карамельный Капучино 0.2',3,110.0);
+INSERT INTO "products" VALUES(161,'Кофе Карамельный Капучино 0.4',3,130.0);
+INSERT INTO "products" VALUES(162,'Кофе Кокосовый латте 0.2',3,120.0);
+INSERT INTO "products" VALUES(163,'Кофе Кокосовый латте 0.3',3,140.0);
+INSERT INTO "products" VALUES(164,'Кофе Латте 0.2',3,100.0);
+INSERT INTO "products" VALUES(165,'Кофе Латте 0.3',3,120.0);
+INSERT INTO "products" VALUES(166,'Кофе Ореховый латте 0.2',3,110.0);
+INSERT INTO "products" VALUES(167,'Кофе Ореховый латте 0.3',3,130.0);
+INSERT INTO "products" VALUES(168,'Кофе Флэт уайт 0.2',3,100.0);
+INSERT INTO "products" VALUES(169,'Дрип кофе',3,80.0);
+INSERT INTO "products" VALUES(170,'Зеленый чай NEW сенча Small',3,70.0);
+INSERT INTO "products" VALUES(171,'Баварская Large',1,200.0);
+INSERT INTO "products" VALUES(172,'Баварская Medium',1,180.0);
+INSERT INTO "products" VALUES(173,'Баварская Small',1,160.0);
+INSERT INTO "products" VALUES(174,'Барбекю соус Додо',2,50.0);
+INSERT INTO "products" VALUES(175,'Бекон BBQ Римская (4 кусочка) Small',1,150.0);
+INSERT INTO "products" VALUES(176,'Бекон BBQ Римская (кусочки) Medium',1,180.0);
+INSERT INTO "products" VALUES(177,'Бруслетики',2,120.0);
+INSERT INTO "products" VALUES(178,'Бруслетики 130.0',2,130.0);
+INSERT INTO "products" VALUES(179,'Бруслетики 270.0',2,270.0);
+INSERT INTO "products" VALUES(180,'Ветчина и сыр',1,150.0);
+INSERT INTO "products" VALUES(181,'Говядина песто (кусочки, материнская) Large',1,220.0);
+INSERT INTO "products" VALUES(182,'Говядина песто Римская 4 шт (кусочки, материнская) Small',1,160.0);
+INSERT INTO "products" VALUES(183,'Говядина песто Римская 8 шт (кусочки, материнская) Medium',1,190.0);
+INSERT INTO "products" VALUES(184,'Грибная (кусочки) Large',1,200.0);
+INSERT INTO "products" VALUES(185,'Грибная Римская (4 кусочка) Small',1,150.0);
+INSERT INTO "products" VALUES(186,'Грибной Стартер',2,140.0);
+INSERT INTO "products" VALUES(187,'Грибной стартер',2,140.0);
+INSERT INTO "products" VALUES(188,'Двойная пепперони Large',1,250.0);
+INSERT INTO "products" VALUES(189,'Двойная пепперони Medium',1,220.0);
+INSERT INTO "products" VALUES(190,'Двойная пепперони Small',1,190.0);
+INSERT INTO "products" VALUES(191,'Двойной цыпленок',1,200.0);
+INSERT INTO "products" VALUES(192,'Деревенская с бужениной Large',1,230.0);
+INSERT INTO "products" VALUES(193,'Деревенская с бужениной Medium',1,210.0);
+INSERT INTO "products" VALUES(194,'Деревенская с бужениной Small',1,190.0);
+INSERT INTO "products" VALUES(195,'Домашняя',1,180.0);
+INSERT INTO "products" VALUES(196,'Домашняя Large',1,220.0);
+INSERT INTO "products" VALUES(197,'Домашняя Medium',1,200.0);
+INSERT INTO "products" VALUES(198,'Домашняя Small',1,180.0);
+INSERT INTO "products" VALUES(199,'Дэнвич ветчина и сыр',2,150.0);
+INSERT INTO "products" VALUES(200,'Дэнвич чоризо барбекю',2,160.0);
+INSERT INTO "products" VALUES(201,'Карбонара (без свинины) Large',2,220.0);
+INSERT INTO "products" VALUES(202,'Карбонара (без свинины) Medium',2,200.0);
+INSERT INTO "products" VALUES(203,'Карбонара (без свинины) Small',2,180.0);
+INSERT INTO "products" VALUES(204,'Картофель из печи с сырным соусом Big',2,200.0);
+INSERT INTO "products" VALUES(205,'Картофель из печи с сырным соусом Small',2,150.0);
+INSERT INTO "products" VALUES(206,'Картофельные оладьи',2,120.0);
+INSERT INTO "products" VALUES(207,'Картофельные оладьи Big',2,180.0);
+INSERT INTO "products" VALUES(208,'Картофельные оладьи Small',2,140.0);
+INSERT INTO "products" VALUES(209,'Картофельные оладьи, 4 шт',2,150.0);
+INSERT INTO "products" VALUES(210,'Картофельные оладьи, 8 шт',2,280.0);
+INSERT INTO "products" VALUES(211,'Колбаски барбекю Large',2,220.0);
+INSERT INTO "products" VALUES(212,'Колбаски барбекю Medium',2,200.0);
+INSERT INTO "products" VALUES(213,'Колбаски барбекю Small',2,180.0);
+INSERT INTO "products" VALUES(214,'Круассан с ветчиной (тест СПБ)',2,130.0);
+INSERT INTO "products" VALUES(215,'Круассан с миндальным кремом Тест СПб',2,140.0);
+INSERT INTO "products" VALUES(216,'Крылья «Барбекю»',2,180.0);
+INSERT INTO "products" VALUES(217,'Куриные кусочки',2,150.0);
+INSERT INTO "products" VALUES(218,'Куриные наггетсы Big',2,200.0);
+INSERT INTO "products" VALUES(219,'Куриные наггетсы Small',2,150.0);
+INSERT INTO "products" VALUES(220,'Брауни',4,120.0);
+INSERT INTO "products" VALUES(221,'Вафельный рожок',4,30.0);
+INSERT INTO "products" VALUES(222,'Вафельный рожок (м)',4,35.0);
+INSERT INTO "products" VALUES(223,'Вафельный рожок (м) 1.0',4,35.0);
+INSERT INTO "products" VALUES(224,'Вафельный рожок 1.0',4,35.0);
+INSERT INTO "products" VALUES(225,'Додо тарт',4,100.0);
+INSERT INTO "products" VALUES(226,'Додо тарт 80.0',4,80.0);
+INSERT INTO "products" VALUES(227,'Додстер Карри',4,150.0);
+INSERT INTO "products" VALUES(228,'Додстер Песто',4,150.0);
+INSERT INTO "products" VALUES(229,'Додстер с ветчиной',4,160.0);
+INSERT INTO "products" VALUES(230,'Додо Книга',6,500.0);
+INSERT INTO "products" VALUES(231,'Додо Книги набор',6,1000.0);
+INSERT INTO "products" VALUES(232,'Жевательная резинка «Love is...»',6,20.0);
+INSERT INTO "products" VALUES(233,'Книга «И ботаники делают бизнес 1+2»',6,800.0);
+INSERT INTO "products" VALUES(234,'Коллекционный магнит «Додо Пиццы»',6,100.0);
+INSERT INTO "products" VALUES(235,'Кус Бекон BBQ',1,250.0);
+INSERT INTO "products" VALUES(236,'Кус Бекон BBQ Римская',1,300.0);
+INSERT INTO "products" VALUES(237,'Кус Бекон BBQ Римская (4 кусочка)',1,400.0);
+INSERT INTO "products" VALUES(238,'Кус Бекон BBQ Римская (4 кусочка) (тест 90 минут)',1,450.0);
+INSERT INTO "products" VALUES(239,'Кус Бекон BBQ Римская (тест 90 минут)',1,350.0);
+INSERT INTO "products" VALUES(240,'Кус Ветчина и Сыр (фудкорт)',1,220.0);
+INSERT INTO "products" VALUES(241,'Кус Говядина песто Римская 4 шт',1,400.0);
+INSERT INTO "products" VALUES(242,'Кус Говядина песто Римская 4 шт (90 минут)',1,450.0);
+INSERT INTO "products" VALUES(243,'Кус Говядина песто Римская 8 шт',1,700.0);
+INSERT INTO "products" VALUES(244,'Кус Говядина песто Римская 8 шт (90 минут)',1,750.0);
+INSERT INTO "products" VALUES(245,'Кус Грибная',1,200.0);
+INSERT INTO "products" VALUES(246,'Кус Грибная (фудкорт)',1,220.0);
+INSERT INTO "products" VALUES(247,'Кус Грибная Римская',1,300.0);
+INSERT INTO "products" VALUES(248,'Кус Грибная Римская (4 кусочка)',1,400.0);
+INSERT INTO "products" VALUES(249,'Кус Грибная Римская (4 кусочка) ( 90 минут)',1,450.0);
+INSERT INTO "products" VALUES(250,'Кус Грибная Римская 8 шт ( тест 90 минут)',1,750.0);
+INSERT INTO "products" VALUES(251,'Кус Диабло (фудкорт)',1,250.0);
+INSERT INTO "products" VALUES(252,'Кус Колбаски барбекю (половинка)',1,150.0);
+INSERT INTO "products" VALUES(253,'Кус Маргарита (половинка)',1,150.0);
+INSERT INTO "products" VALUES(254,'Кус Мясная BBQ (фудкорт)',1,280.0);
+INSERT INTO "products" VALUES(255,'Кус Мясо и овощи',1,250.0);
+INSERT INTO "products" VALUES(256,'Кус Мясо и овощи Римская',1,300.0);
+INSERT INTO "products" VALUES(257,'Кус Мясо и овощи Римская (4 кусочка)',1,400.0);
+INSERT INTO "products" VALUES(258,'Кус Мясо и овощи Римская (4 кусочка) ( 90 минут )',1,450.0);
+INSERT INTO "products" VALUES(259,'Кус Мясо и овощи Римская 8 шт ( 90 минут)',1,750.0);
+INSERT INTO "products" VALUES(260,'Кус Овощная',1,200.0);
+INSERT INTO "products" VALUES(261,'Кус Овощная (фудкорт)',1,220.0);
+INSERT INTO "products" VALUES(262,'Кус Овощная Римская',1,300.0);
+INSERT INTO "products" VALUES(263,'Кус Овощная Римская (4 кусочка)',1,400.0);
+INSERT INTO "products" VALUES(264,'Кус Овощная Римская (4 кусочка) (тест 90 минут)',1,450.0);
+INSERT INTO "products" VALUES(265,'Кус Овощная Римская (тест 90 минут)',1,350.0);
+INSERT INTO "products" VALUES(266,'Кус Пепперони',1,250.0);
+INSERT INTO "products" VALUES(267,'Кус Пепперони (половинка)',1,150.0);
+INSERT INTO "products" VALUES(268,'Кус Пепперони Римская',1,300.0);
+INSERT INTO "products" VALUES(269,'Кус Пепперони Римская (4 кусочка)',1,400.0);
+INSERT INTO "products" VALUES(270,'Кус Пепперони Римская (4 кусочка) (тест 90 минут)',1,450.0);
+INSERT INTO "products" VALUES(271,'Кус Пепперони Римская (тесто 90 минут)',1,350.0);
+INSERT INTO "products" VALUES(272,'Кус Пепперони фреш (фудкорт)',1,280.0);
+INSERT INTO "products" VALUES(273,'Кус Песто',1,250.0);
+INSERT INTO "products" VALUES(274,'Кус Песто (половинка)',1,150.0);
+INSERT INTO "products" VALUES(275,'Кус Песто (фудкорт)',1,220.0);
+INSERT INTO "products" VALUES(276,'Кус Песто Римская',1,300.0);
+INSERT INTO "products" VALUES(277,'Кус Сырная (фудкорт)',1,220.0);
+INSERT INTO "products" VALUES(278,'Кус Чоризо с овощами',1,250.0);
+INSERT INTO "products" VALUES(279,'Кус Чоризо с овощами Римская',1,300.0);
+INSERT INTO "products" VALUES(280,'Кус говядина песто',1,250.0);
+INSERT INTO "products" VALUES(281,'Ланчбокс Баварский',2,200.0);
+INSERT INTO "products" VALUES(282,'Ланчбокс с крыльями барбекю',2,220.0);
+INSERT INTO "products" VALUES(283,'Ланчбокс с куриными кусочками',2,200.0);
+INSERT INTO "products" VALUES(284,'Острый Додстер',2,180.0);
+INSERT INTO "products" VALUES(285,'Омлет Сырный',2,120.0);
+INSERT INTO "products" VALUES(286,'Омлет с беконом',2,130.0);
+INSERT INTO "products" VALUES(287,'Омлет с ветчиной и грибами',2,140.0);
+INSERT INTO "products" VALUES(288,'Омлет с овощами',2,120.0);
+INSERT INTO "products" VALUES(289,'Омлет с овощами в пите',2,150.0);
+INSERT INTO "products" VALUES(290,'Омлет с пепперони',2,130.0);
+INSERT INTO "products" VALUES(291,'Омлет с песто',2,140.0);
+INSERT INTO "products" VALUES(292,'Лимонад Клубничный Мохито 0.3',3,100.0);
+INSERT INTO "products" VALUES(293,'Манго-шейк (NEW) 0.3',3,120.0);
+INSERT INTO "products" VALUES(294,'Манго-шейк (NEW) фризер 0.3',3,130.0);
+INSERT INTO "products" VALUES(295,'Молоко для 0.2 Small',3,50.0);
+INSERT INTO "products" VALUES(296,'Молоко для 0.3',3,60.0);
+INSERT INTO "products" VALUES(297,'Морс Вишня  0.45',3,80.0);
+INSERT INTO "products" VALUES(298,'Морс Клюква 0.45',3,80.0);
+INSERT INTO "products" VALUES(299,'Напиток Черноголовка Байкал 0.5',3,90.0);
+INSERT INTO "products" VALUES(300,'Напиток Черноголовка Дюшес 0.5',3,90.0);
+INSERT INTO "products" VALUES(301,'Напиток Черноголовка Лимонад 0.5',3,90.0);
+INSERT INTO "products" VALUES(302,'Маффин Соленая карамель',4,120.0);
+INSERT INTO "products" VALUES(303,'Маффин Соленая карамель 120.0',4,120.0);
+INSERT INTO "products" VALUES(304,'Маффин Три шоколада 120.0',4,120.0);
+INSERT INTO "products" VALUES(305,'Мороженое в стаканчике без топпинга (тест с сиропами) Small',4,80.0);
+INSERT INTO "products" VALUES(306,'Мороженое в стаканчике с карамелью',4,100.0);
+INSERT INTO "products" VALUES(307,'Магнит на холодильник «I want to believe»',6,300.0);
+INSERT INTO "products" VALUES(308,'Ложка',7,50.0);
+INSERT INTO "products" VALUES(309,'Малиновое варенье',7,150.0);
+INSERT INTO "products" VALUES(310,'Мед',7,200.0);
+INSERT INTO "products" VALUES(311,'Мортаделла с трюфельным соусом Large',1,300.0);
+INSERT INTO "products" VALUES(312,'Мортаделла с трюфельным соусом Medium',1,250.0);
+INSERT INTO "products" VALUES(313,'Мортаделла с трюфельным соусом Small',1,200.0);
+INSERT INTO "products" VALUES(314,'Мясная Large',7,350.0);
+INSERT INTO "products" VALUES(315,'Мясная Medium',7,300.0);
+INSERT INTO "products" VALUES(316,'Мясная Small',7,250.0);
+INSERT INTO "products" VALUES(317,'Мясной Микс с пастрами из говядины Large',1,400.0);
+INSERT INTO "products" VALUES(318,'Мясной Микс с пастрами из говядины Medium',1,350.0);
+INSERT INTO "products" VALUES(319,'Мясной Микс с пастрами из говядины Small',1,300.0);
+INSERT INTO "products" VALUES(320,'Мясо и овощи Large',1,350.0);
+INSERT INTO "products" VALUES(321,'Мясо и овощи Римская Small',1,250.0);
+INSERT INTO "products" VALUES(322,'Мясо и овощи Римская Medium',7,300.0);
+INSERT INTO "products" VALUES(323,'Овощная Large',7,250.0);
+INSERT INTO "products" VALUES(324,'Овощная Римская Small',7,200.0);
+INSERT INTO "products" VALUES(325,'Паста Карбонара',2,300.0);
+INSERT INTO "products" VALUES(326,'Паста Карбонара (без свинины)',2,300.0);
+INSERT INTO "products" VALUES(327,'Паста Мясная',2,320.0);
+INSERT INTO "products" VALUES(328,'Паста Песто',2,310.0);
+INSERT INTO "products" VALUES(329,'Паста Трюфельная',2,350.0);
+INSERT INTO "products" VALUES(330,'Пепперони Римская (4 кусочка) Small',1,250.0);
+INSERT INTO "products" VALUES(331,'Песто Large',1,400.0);
+INSERT INTO "products" VALUES(332,'Песто Medium',1,350.0);
+INSERT INTO "products" VALUES(333,'Песто Small',1,300.0);
+INSERT INTO "products" VALUES(334,'Песто Римская (4 кусочка) Small',1,250.0);
+INSERT INTO "products" VALUES(335,'Песто Римская Кусочками Medium',1,350.0);
+INSERT INTO "products" VALUES(336,'Пирожное Медовое (тест СПБ)',4,120.0);
+INSERT INTO "products" VALUES(337,'Пирожное Наполеон (тест СПБ)',4,120.0);
+INSERT INTO "products" VALUES(338,'Письмо от управляющего',7,0.0);
+INSERT INTO "products" VALUES(339,'Пицца Бекон BBQ (кусочки) Large',1,500.0);
+INSERT INTO "products" VALUES(340,'Пицца Ветчина и сыр (тепловой шкаф) Small',1,250.0);
+INSERT INTO "products" VALUES(341,'Пицца Жюльен Large',1,500.0);
+INSERT INTO "products" VALUES(342,'Пицца Жюльен Medium',1,400.0);
+INSERT INTO "products" VALUES(343,'Пицца Жюльен Small',1,300.0);
+INSERT INTO "products" VALUES(344,'Пицца Миксик',1,450.0);
+INSERT INTO "products" VALUES(345,'Пицца Миксик Small',1,350.0);
+INSERT INTO "products" VALUES(346,'Пицца Пепперони (тепловой шкаф) Big',1,600.0);
+INSERT INTO "products" VALUES(347,'Пицца Пепперони фреш (тепловой шкаф) Small',1,300.0);
+INSERT INTO "products" VALUES(348,'Пицца Сырная (тепловой шкаф) Small',1,280.0);
+INSERT INTO "products" VALUES(349,'Пицца из половинок Large',1,550.0);
+INSERT INTO "products" VALUES(350,'Пицца из половинок. Large',1,550.0);
+INSERT INTO "products" VALUES(351,'Пицца от шефа Large',1,600.0);
+INSERT INTO "products" VALUES(352,'Пицца от шефа Medium',1,500.0);
+INSERT INTO "products" VALUES(353,'Пицца от шефа Small',1,400.0);
+INSERT INTO "products" VALUES(354,'Пицца от шефа с барбекю Large',1,650.0);
+INSERT INTO "products" VALUES(355,'Пицца от шефа с барбекю Medium',1,550.0);
+INSERT INTO "products" VALUES(356,'Пицца от шефа с барбекю Small',1,450.0);
+INSERT INTO "products" VALUES(357,'Подарочный сертификат',6,1000.0);
+INSERT INTO "products" VALUES(358,'Подарочный сертификат 1500 ₽ (локальный маркетинг)',6,1500.0);
+INSERT INTO "products" VALUES(359,'Подарочный сертификат 300 ₽ (локальный маркетинг)',6,300.0);
+INSERT INTO "products" VALUES(360,'Подарочный сертификат 500 ₽ (локальный маркетинг)',6,500.0);
+INSERT INTO "products" VALUES(361,'Продукт может быть без лука',7,0.0);
+INSERT INTO "products" VALUES(362,'Размешиватель',6,50.0);
+INSERT INTO "products" VALUES(363,'Римская Мясная (Тула) Small',1,250.0);
+INSERT INTO "products" VALUES(364,'Римская Пепперони (Тула) Small',1,250.0);
+INSERT INTO "products" VALUES(365,'Римская Песто (Тула) Small',1,250.0);
+INSERT INTO "products" VALUES(366,'Римская Четыре сыра (Тула) Small',1,250.0);
+INSERT INTO "products" VALUES(367,'Рулетики с корицей',4,100.0);
+INSERT INTO "products" VALUES(368,'Рулетики с корицей 110.0',4,110.0);
+INSERT INTO "products" VALUES(369,'Рулетики с корицей 220.0',4,220.0);
+INSERT INTO "products" VALUES(370,'Салат Греческий с соусом бальзамик',2,200.0);
+INSERT INTO "products" VALUES(371,'Салат Греческий с соусом бальзамик (трекинг)',2,200.0);
+INSERT INTO "products" VALUES(372,'Салат Цезарь со смесью сыров',2,250.0);
+INSERT INTO "products" VALUES(373,'Салат Цезарь со смесью сыров (ПФ)',2,250.0);
+INSERT INTO "products" VALUES(374,'Салат Цезарь со смесью сыров (трекинг)',2,250.0);
+INSERT INTO "products" VALUES(375,'Салат Цезарь со смесью сыров (трекинг) (ПФ)',2,250.0);
+INSERT INTO "products" VALUES(376,'Сахар',3,10.0);
+INSERT INTO "products" VALUES(377,'Сгущенное молоко',3,50.0);
+INSERT INTO "products" VALUES(378,'Сгущенное молоко в стиках',3,20.0);
+INSERT INTO "products" VALUES(379,'Сироп карамельный 0,2',3,30.0);
+INSERT INTO "products" VALUES(380,'Сироп карамельный 0,3',3,40.0);
+INSERT INTO "products" VALUES(381,'Сироп карамельный 0,4 Big',3,50.0);
+INSERT INTO "products" VALUES(382,'Сироп кокосовый 0,2',3,30.0);
+INSERT INTO "products" VALUES(383,'Сироп кокосовый 0,3',3,40.0);
+INSERT INTO "products" VALUES(384,'Сироп кокосовый 0,4 Big',3,50.0);
+INSERT INTO "products" VALUES(385,'Сироп ореховый 0,2',3,30.0);
+INSERT INTO "products" VALUES(386,'Сироп ореховый 0,3',3,40.0);
+INSERT INTO "products" VALUES(387,'Сироп ореховый 0,4 Big',3,50.0);
+INSERT INTO "products" VALUES(388,'Слоеные палочки с ананасами и брусникой',4,150.0);
+INSERT INTO "products" VALUES(389,'Слоеные палочки с ананасами и брусникой 8.0',4,80.0);
+INSERT INTO "products" VALUES(390,'Слоеные палочки с ананасами и шоколадным соусом',4,150.0);
+INSERT INTO "products" VALUES(391,'Слоеные палочки с ананасами и шоколадным соусом 8.0',4,80.0);
+INSERT INTO "products" VALUES(392,'Слоеные палочки с брусникой и клюквенным соусом',4,150.0);
+INSERT INTO "products" VALUES(393,'Слоеные палочки с брусникой и клюквенным соусом 8.0',4,80.0);
+INSERT INTO "products" VALUES(394,'Слоеные палочки с соусом манго и ананасами',4,150.0);
+INSERT INTO "products" VALUES(395,'Слоеные палочки с соусом манго и ананасами 8.0',4,80.0);
+INSERT INTO "products" VALUES(396,'Соберите свою пиццу Large',1,600.0);
+INSERT INTO "products" VALUES(397,'Соберите свою пиццу Medium',1,500.0);
+INSERT INTO "products" VALUES(398,'Соберите свою пиццу Small',1,400.0);
+INSERT INTO "products" VALUES(399,'Сок Rich Апельсин',3,80.0);
+INSERT INTO "products" VALUES(400,'Сок Rich Вишня',3,80.0);
+INSERT INTO "products" VALUES(401,'Сок Rich Яблоко',3,80.0);
+INSERT INTO "products" VALUES(402,'Сорбет Бразильская маракуйя и манго',4,120.0);
+INSERT INTO "products" VALUES(403,'Сорбет Бразильская маракуйя и манго 1.0',4,100.0);
+INSERT INTO "products" VALUES(404,'Сорбет Турецкий гранат с клубникой',4,120.0);
+INSERT INTO "products" VALUES(405,'Сорбет Турецкий гранат с клубникой 1.0',4,100.0);
+INSERT INTO "products" VALUES(406,'Соус Ранч/Чесночный',5,30.0);
+INSERT INTO "products" VALUES(407,'Соус Цезарь',5,30.0);
+INSERT INTO "products" VALUES(408,'Стартер с ветчиной',2,150.0);
+INSERT INTO "products" VALUES(409,'Супермясной Додстер',2,200.0);
+INSERT INTO "products" VALUES(410,'Сырники без топпинга',4,150.0);
+INSERT INTO "products" VALUES(411,'Сырники без топпинга (тест завтраков) Big',4,200.0);
+INSERT INTO "products" VALUES(412,'Сырники без топпинга (тест завтраков) Small',4,100.0);
+INSERT INTO "products" VALUES(413,'Сырники без топпинга 130.0',4,130.0);
+INSERT INTO "products" VALUES(414,'Сырники без топпинга 30.0',4,30.0);
+INSERT INTO "products" VALUES(415,'Сырники без топпинга Big',4,200.0);
+INSERT INTO "products" VALUES(416,'Сырники с малиновым вареньем (тест завтраков)  Big',4,200.0);
+INSERT INTO "products" VALUES(417,'Сырники с малиновым вареньем (тест завтраков)  Small',4,100.0);
+INSERT INTO "products" VALUES(418,'Сырники с малиновым вареньем 130.0',4,130.0);
+INSERT INTO "products" VALUES(419,'Сырники с малиновым вареньем 260.0',4,260.0);
+INSERT INTO "products" VALUES(420,'Сырники со сгущенным молоком 25.0',4,25.0);
+INSERT INTO "products" VALUES(421,'Сырники со сгущенным молоком 30.0',4,30.0);
+INSERT INTO "products" VALUES(422,'Сырники со сгущенным молоком Big',4,200.0);
+INSERT INTO "products" VALUES(423,'Сырники со сгущенным молоком Small',4,100.0);
+INSERT INTO "products" VALUES(424,'Сырные палочки с песто',2,150.0);
+INSERT INTO "products" VALUES(425,'Сырные палочки с чесноком',2,150.0);
+INSERT INTO "products" VALUES(426,'Сырный Стартер',2,150.0);
+INSERT INTO "products" VALUES(427,'Сырный цыпленок Large',1,500.0);
+INSERT INTO "products" VALUES(428,'Сырный цыпленок Medium',1,400.0);
+INSERT INTO "products" VALUES(429,'Сырный цыпленок Small',1,300.0);
+INSERT INTO "products" VALUES(430,'Сэндвич с моцареллой и томатами (тест СПБ)',2,200.0);
+INSERT INTO "products" VALUES(431,'Таежный чай 0.2',3,50.0);
+INSERT INTO "products" VALUES(432,'Таежный чай 0.3',3,60.0);
+INSERT INTO "products" VALUES(433,'Таежный чай, 10 сашетов',6,200.0);
+INSERT INTO "products" VALUES(434,'Теплый бамбл кофе Big',3,150.0);
+INSERT INTO "products" VALUES(435,'Томатный суп с гренками',2,200.0);
+INSERT INTO "products" VALUES(436,'Томатный суп с митболами',2,250.0);
+INSERT INTO "products" VALUES(437,'Трубочка',4,50.0);
+INSERT INTO "products" VALUES(438,'Фартук «Рождаем пиццу в муке творчества»',6,500.0);
+INSERT INTO "products" VALUES(439,'Фондан 2.0',4,120.0);
+INSERT INTO "products" VALUES(440,'Фондан 80.0',4,80.0);
+INSERT INTO "products" VALUES(441,'Цитрусовый чай с имбирем Small',3,80.0);
+INSERT INTO "products" VALUES(442,'Цыпленок барбекю (без свинины) Large',1,500.0);
+INSERT INTO "products" VALUES(443,'Цыпленок барбекю (без свинины) Medium',1,400.0);
+INSERT INTO "products" VALUES(444,'Цыпленок барбекю (без свинины) Small',1,300.0);
+INSERT INTO "products" VALUES(445,'Цыпленок барбекю Large',1,500.0);
+INSERT INTO "products" VALUES(446,'Цыпленок барбекю Medium',1,400.0);
+INSERT INTO "products" VALUES(447,'Цыпленок барбекю Small',1,300.0);
+INSERT INTO "products" VALUES(448,'Цыпленок карри Large',1,500.0);
+INSERT INTO "products" VALUES(449,'Цыпленок карри Medium',1,400.0);
+INSERT INTO "products" VALUES(450,'Цыпленок карри Small',1,300.0);
+INSERT INTO "products" VALUES(451,'Цыпленок ранч Large',1,500.0);
+INSERT INTO "products" VALUES(452,'Цыпленок ранч Medium',1,400.0);
+INSERT INTO "products" VALUES(453,'Цыпленок ранч Small',1,300.0);
+INSERT INTO "products" VALUES(454,'Чай Зеленый 0.2',3,50.0);
+INSERT INTO "products" VALUES(455,'Чай Зеленый 0.3',3,60.0);
+INSERT INTO "products" VALUES(456,'Чай Зеленый 0.4',3,70.0);
+INSERT INTO "products" VALUES(457,'Чай Черный 0.2',3,50.0);
+INSERT INTO "products" VALUES(458,'Чай Черный 0.3',3,60.0);
+INSERT INTO "products" VALUES(459,'Чай Черный 0.4',3,70.0);
+INSERT INTO "products" VALUES(460,'Черный чай с чабрецом',3,60.0);
+INSERT INTO "products" VALUES(461,'Черный чай с чабрецом Small',3,50.0);
+INSERT INTO "products" VALUES(462,'Чесночный соус',5,30.0);
+INSERT INTO "products" VALUES(463,'Четыре сезона',1,500.0);
+INSERT INTO "products" VALUES(464,'Четыре сезона  Large',1,500.0);
+INSERT INTO "products" VALUES(465,'Четыре сезона  Medium',1,400.0);
+INSERT INTO "products" VALUES(466,'Четыре сезона  Small',1,300.0);
+INSERT INTO "products" VALUES(467,'Четыре сыра Large',1,500.0);
+INSERT INTO "products" VALUES(468,'Четыре сыра Medium',1,400.0);
+INSERT INTO "products" VALUES(469,'Четыре сыра Small',1,300.0);
+INSERT INTO "products" VALUES(470,'Чизкейк Банановый с шоколадным печеньем 100.0',4,100.0);
+INSERT INTO "products" VALUES(471,'Чизкейк Нью-Йорк (новая упаковка)',4,150.0);
+INSERT INTO "products" VALUES(472,'Чизкейк Нью-Йорк (новая упаковка) 100.0',4,100.0);
+INSERT INTO "products" VALUES(473,'Чизкейк Нью-Йорк (старая упаковка)',4,150.0);
+INSERT INTO "products" VALUES(474,'Чизкейк Шоколадный',4,150.0);
+INSERT INTO "products" VALUES(475,'Чоризо с овощами Римская Кусочками Medium',1,400.0);
+INSERT INTO "products" VALUES(476,'Чоризо с овощами Римская Кусочками Small',1,300.0);
+INSERT INTO "products" VALUES(477,'Шоколадный кукис NEW 70.0',4,70.0);
+INSERT INTO "products" VALUES(478,'Электронная подарочная Додо–карта Small',8,500.0);
+INSERT INTO "products" VALUES(479,'Вилка',6,50.0);
+INSERT INTO "products" VALUES(480,'Вода БонаАква негазированная  0.5',3,40.0);
+INSERT INTO "products" VALUES(481,'Горячий сорбет апельсин и облепиха 0.3',4,120.0);
+INSERT INTO "products" VALUES(482,'Додо (без свинины) Large',1,500.0);
+INSERT INTO "products" VALUES(483,'Додо (без свинины) Medium',1,400.0);
+INSERT INTO "products" VALUES(484,'Додо (без свинины) Small',1,300.0);
+INSERT INTO "products" VALUES(485,'Додо Large',1,550.0);
+INSERT INTO "products" VALUES(486,'Додо Medium',1,450.0);
+INSERT INTO "products" VALUES(487,'Додо Small',1,350.0);
+INSERT INTO "products" VALUES(488,'Додо Клюв',7,100.0);
+INSERT INTO "products" VALUES(489,'Додо Книга',6,300.0);
+INSERT INTO "products" VALUES(490,'Додо Микс (без свинины) Large',1,520.0);
+INSERT INTO "products" VALUES(491,'Додо Микс (без свинины) Medium',1,420.0);
+INSERT INTO "products" VALUES(492,'Додо Микс (без свинины) Small',1,320.0);
+INSERT INTO "products" VALUES(493,'Додстер с ветчиной',2,160.0);
+INSERT INTO "products" VALUES(494,'Партнерская программа с «MYBONUS»',8,0.0);
+INSERT INTO "products" VALUES(495,'Чесночный соус',5,30.0);
+COMMIT;
