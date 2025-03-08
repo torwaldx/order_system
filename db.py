@@ -71,7 +71,7 @@ def get_products_with_prices( order: Dict) -> List[Dict]:
         if row:
             item["price"] = row[0]
         else:
-            item["price"] =  None # Если цена не найдена
+            item["price"] =  0 # Если цена не найдена
     
     conn.close()
     return order
