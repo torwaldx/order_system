@@ -26,9 +26,9 @@ if prompt := st.chat_input("Просто напечатайте, что вы х�
 
     # Generate a response using the OpenAI API.
     chain = get_order_process_chain()
-    answer = chain.invoke({"user_request": prompt})
+    order_dict = chain.invoke({"user_request": prompt})
 
-    order = db.get_products_with_prices(json.loads(answer.content))
+    order = db.get_products_with_prices(order_dict)
     order_text = "Ваш заказ:"
     sum = 0
     for item in order['items']:

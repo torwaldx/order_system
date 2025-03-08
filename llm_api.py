@@ -5,8 +5,9 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate, FewShotPromptTemplate
 from langchain.schema.runnable import RunnablePassthrough, RunnableLambda
 from langchain_core.chat_history import  BaseChatMessageHistory
-from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_community.chat_message_histories.streamlit import StreamlitChatMessageHistory
 
 from db import get_products_str
@@ -90,12 +91,14 @@ def get_order_process_chain():
         | llm
     )
 
+    parser = JsonOutputParser()
+
     rwmh = RunnableWithMessageHistory(
         chain,
         get_session_history,
         input_messages_key="user_request",
         history_messages_key="history",
-    )
+    ) | parser
 
     return rwmh
 
