@@ -26,13 +26,6 @@ llm = ChatOpenAI(
 def get_session_history() -> BaseChatMessageHistory:
     return StreamlitChatMessageHistory()
 
-def debug_prompt(inputs):
-    print("=== Полный промпт ===")
-    for m in inputs.to_messages():
-      st.sidebar.markdown(m.pretty_repr())
-    print("=====================")
-    return inputs  # Пропускаем дальше без изменений
-
 def get_order_process_chain():
     # Шаблон для подсказок
     example_prompt = PromptTemplate.from_template(
@@ -87,7 +80,6 @@ def get_order_process_chain():
             ).format(user_request=inputs["user_request"])
         )
         | prompt
-        | RunnableLambda(debug_prompt)  # Выводит полный промпт перед отправкой в LLM
         | llm
     )
 
