@@ -55,7 +55,6 @@ def get_products_str() -> str:
 def get_products_with_prices( order: Dict) -> List[Dict]:
     """
     Получает список продуктов с их ценами из базы данных SQLite.
-    :param db_path: Путь к файлу базы данных SQLite.
     :param order: JSON-структура с заказом.
     :return: Список словарей с именами продуктов и их ценами.
     """
